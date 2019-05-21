@@ -15,6 +15,8 @@ public class NodeIOElement : MonoBehaviour
 
     private Outline outline;
 
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,22 +36,30 @@ public class NodeIOElement : MonoBehaviour
         ** TODO: Сделать создание связи перетаскиванием
         */
         if(SelectionManager.instance.getSelectedIO() != null){
-            if(SelectionManager.instance.getSelectedIO().getType() == type){
-                SelectionManager.instance.getSelectedIO().setOutline(false); 
-                setOutline(true);
-                SelectionManager.instance.setSelectedIO(this);
+            if(SelectionManager.instance.getSelectedIO() == this){
+                setOutline(false);
+                SelectionManager.instance.setSelectedIO(null);
             } else {
-                NodeIOElement el1 = this;
-                NodeIOElement el2 = SelectionManager.instance.getSelectedIO();
-                // el1 - IN, el2 - OUT
-                if(el1.type == ENodeIOElementType.Output){
-                    NodeIOElement _temp = el1;
-                    el1 = el2;
-                    el2 = _temp;
-                }
+                if(SelectionManager.instance.getSelectedIO().getType() == type){
+                    SelectionManager.instance.getSelectedIO().setOutline(false); 
+                    setOutline(true);
+                    SelectionManager.instance.setSelectedIO(this);
+                } else {
+                    NodeIOElement el1 = this;
+                    NodeIOElement el2 = SelectionManager.instance.getSelectedIO();
+                    // el1 - IN, el2 - OUT
+                    if(el1.type == ENodeIOElementType.Output){
+                        NodeIOElement _temp = el1;
+                        el1 = el2;
+                        el2 = _temp;
+                    }
 
+                }
             }
+        } else {
             
+            SelectionManager.instance.setSelectedIO(this);
+            setOutline(true);
         }
         
     }

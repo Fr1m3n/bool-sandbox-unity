@@ -25,6 +25,7 @@ public class AndNode :  Node
             }
             res &= a.calculate();
         }
+        text.text = res.ToString();
         return res;
     }
 
@@ -43,13 +44,16 @@ public class AndNode :  Node
         text = textGO.GetComponent<Text>();
     }
 
-    public void OnClick(){
-        text.text = calculate().ToString();
-    }
-
+    
     // Update is called once per frame
     void Update()
     {
         
     }
+
+#region Handlers
+    public void OnClick(){
+        calculate();
+    }
+#endregion
 }

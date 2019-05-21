@@ -1,26 +1,30 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class OrNode :  Node
 {
 
+    public GameObject textGO;
+    private Text text;
+
     public override bool calculate(){
         bool res;
         if(inputs[0] != null){
+            Node q = inputs[0];
             res = inputs[0].calculate();
         } else {
-            //log.error("Null input in OrNode");
             return false;
         }
         for(int i = 0; i < inputs.Count; i++){
-            Node a = inputs[i];
+            Node a = (Node) inputs[i];
             if(a == null){
-                //log.error("Null input in OrNode");
                 return false;
             }
             res |= a.calculate();
         }
+        text.text = res.ToString();
         return res;
     }
 
@@ -33,15 +37,21 @@ public class OrNode :  Node
         inputs[num] = node;
     }
 
-    // Start is called before the first frame update
     void Start()
     {
-        initInputs();
+        text = textGO.GetComponent<Text>();
     }
 
-    // Update is called once per frame
+    
+
     void Update()
     {
         
     }
+    
+#region handlers
+    public void OnClick(){
+        calculate();
+    }
+#endregion
 }

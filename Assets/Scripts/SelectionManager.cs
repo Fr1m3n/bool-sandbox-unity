@@ -6,6 +6,8 @@ public class SelectionManager : MonoBehaviour {
 
 #region Variables
     public static SelectionManager instance;
+
+    [SerializeField]
     private NodeIOElement selectedIO; 
     
 #endregion
@@ -22,6 +24,16 @@ public class SelectionManager : MonoBehaviour {
     {
         
     }    
+
+    // TODO: Перенести логику выделения из NodeIOElement в эту ф-ю
+    public void selectIO(NodeIOElement _el){
+        
+    }
+
+    // TODO: Описать логику снятия выделения
+    public void deselectIO(){
+
+    }
 
 #region Getters/Setters
     public void setSelectedIO(NodeIOElement _element){
