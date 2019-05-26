@@ -16,7 +16,7 @@ public class PrimitiveNode :  Node
     }
 
     public override bool f(bool a, bool b){
-        return false;
+        return state;
     }
 
     public void updateText(){
