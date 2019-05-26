@@ -7,34 +7,18 @@ public class OrNode :  Node
 {
 
     public GameObject textGO;
-    private Text text;
 
-    public override bool calculate(){
-        bool res;
-        if(inputs[0] != null){
-            Node q = inputs[0];
-            res = inputs[0].calculate();
-        } else {
-            return false;
-        }
-        for(int i = 0; i < inputs.Count; i++){
-            Node a = (Node) inputs[i];
-            if(a == null){
-                return false;
-            }
-            res |= a.calculate();
-        }
-        text.text = res.ToString();
-        return res;
+    public override bool f(bool a, bool b){
+        return a | b;
     }
 
     private void initInputs(){
-        inputs.Add(null);
-        inputs.Add(null);
+        IOElements.Add(null);
+        IOElements.Add(null);
     }
 
-    public void setInput(int num, Node node){
-        inputs[num] = node;
+    public void setInput(int num, NodeIOElement node){
+        IOElements[num] = node;
     }
 
     void Start()

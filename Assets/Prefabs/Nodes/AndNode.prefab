@@ -106,6 +106,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   parent: {fileID: 4330532192650612620}
+  num: 0
+  edgeGO: {fileID: 5269642313186632378, guid: fa74485f41a928944bd728b3d85618ba, type: 3}
+  edges: []
 --- !u!114 &4330532191517961177
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -479,6 +482,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   parent: {fileID: 4330532192650612620}
+  num: 0
+  edgeGO: {fileID: 5269642313186632378, guid: fa74485f41a928944bd728b3d85618ba, type: 3}
+  edges: []
 --- !u!114 &4330532192215646502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -585,9 +591,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f90db112634148e4d97d7d9c717460c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputs:
-  - {fileID: 0}
-  - {fileID: 0}
+  IOElements:
+  - {fileID: 4330532192215646500}
+  - {fileID: 4330532192900668682}
+  - {fileID: 4330532191517961176}
+  text: {fileID: 4330532192120411635}
   textGO: {fileID: 4330532192120411633}
 --- !u!114 &-6545795290831093588
 MonoBehaviour:
@@ -707,6 +715,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   parent: {fileID: 4330532192650612620}
+  num: 1
+  edgeGO: {fileID: 5269642313186632378, guid: fa74485f41a928944bd728b3d85618ba, type: 3}
+  edges: []
 --- !u!114 &4330532192900668683
 MonoBehaviour:
   m_ObjectHideFlags: 0

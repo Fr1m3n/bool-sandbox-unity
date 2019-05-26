@@ -13,17 +13,30 @@ public class NodeIOElement : MonoBehaviour
     [SerializeField]
     private GameObject parent;
 
+    private Node linkedNode;
+
     private Outline outline;
+
+    [SerializeField]
+    private int num;
+
+    [SerializeField]
+    private GameObject edgeGO;
+    
+    // In edge (input is single)
+    private GameObject edge;
+
+    [SerializeField]
+    // Out edges (outputs can be many)
+    public List<GameObject> edges = new List<GameObject>();
 
     
 
-    // Start is called before the first frame update
     void Start()
     {
         outline = GetComponent<Outline>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         
@@ -53,7 +66,14 @@ public class NodeIOElement : MonoBehaviour
                         el1 = el2;
                         el2 = _temp;
                     }
-
+                    el1.parent.GetComponent<Node>().IOElements[el1.getNum()].setLinkedNode(el2.parent.GetComponent<Node>());
+                    GameObject edge = Instantiate(edgeGO);
+                    el1.setEdge(edge);
+                    el2.edges.Add(edge);
+                    edge.GetComponent<LineRenderer>().SetPosition(0, el1.transform.position);
+                    edge.GetComponent<LineRenderer>().SetPosition(1, el2.transform.position);
+                    SelectionManager.instance.getSelectedIO().setOutline(false);
+                    SelectionManager.instance.setSelectedIO(null);
                 }
             }
         } else {
@@ -63,6 +83,10 @@ public class NodeIOElement : MonoBehaviour
         }
         
     }
+
+    // public void AddEdge(GameObject _edge){
+    //     edges.Add(_edge);
+    // }
 
 #region Getters/Setters
     public void setOutline(bool _state){
@@ -77,8 +101,28 @@ public class NodeIOElement : MonoBehaviour
         type = _type;
     }
 
+    public int getNum(){
+        return num;
+    }
+
     public ENodeIOElementType getType(){
         return type;
+    }
+
+    public Node getLinkedNode(){
+        return linkedNode;
+    }
+
+    public void setLinkedNode(Node _node){
+        linkedNode = _node;
+    }
+
+    public void setEdge(GameObject _edge){
+        edge = _edge;
+    }
+
+    public GameObject getEdge(){
+        return edge;
     }
 #endregion
 }

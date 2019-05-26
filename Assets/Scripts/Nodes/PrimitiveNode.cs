@@ -7,13 +7,16 @@ public class PrimitiveNode :  Node
 {
 
     public GameObject textGO;
-    private Text text;  
 
     [SerializeField]
     private bool state = true;
 
     public override bool calculate(){
         return state;
+    }
+
+    public override bool f(bool a, bool b){
+        return false;
     }
 
     public void updateText(){
